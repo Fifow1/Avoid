@@ -5,12 +5,20 @@ namespace opoopopoop
 {
     internal class FileName
     {
-        struct Vector2
+        struct PlayerVector
         {
             public int x;
             public int y;
 
         }
+
+        struct PlayerVectorBefore
+        {
+            public int x;
+            public int y;
+
+        }
+
 
         struct Bullet
         {
@@ -24,10 +32,13 @@ namespace opoopopoop
 
             Console.CursorVisible = false;
 
-            ConsoleKeyInfo temp;
+            ConsoleKeyInfo inputKey;
             Stopwatch watch = new Stopwatch();
             watch.Start();
-            Vector2 playerPos;
+
+            // 플레이어 구조체
+            PlayerVector playerVec;
+            PlayerVectorBefore playerVecBe;
 
             Bullet[] bullet = new Bullet[20];
 
@@ -37,8 +48,10 @@ namespace opoopopoop
             }
 
 
-            playerPos.x = 0;
-            playerPos.y = 0;
+            playerVec.x = 17;
+            playerVec.y = 17;
+            playerVecBe.x = 17;
+            playerVecBe.y = 17;
 
             watch.Start();
 
@@ -46,8 +59,8 @@ namespace opoopopoop
             {
                 if (Console.KeyAvailable)
                 {
-                    temp = Console.ReadKey(true);
-                    if (temp.Key == ConsoleKey.Enter)
+                    inputKey = Console.ReadKey(true);
+                    if (inputKey.Key == ConsoleKey.Enter)
                     {
                         for (int i = 0; i < bullet.Length; i++)
                         {
@@ -57,43 +70,53 @@ namespace opoopopoop
                             }
                             else if (bullet[i].isFired == false)
                             {
-                                bullet[i].posX = playerPos.x;
-                                bullet[i].posX = playerPos.y;
+                                bullet[i].posX = playerVec.x;
+                                bullet[i].posY = playerVec.y;
                                 bullet[i].isFired = true;
                                 break;
                             }
                         }
                     }
-                    else if (temp.Key == ConsoleKey.D)
+                    else if (inputKey.Key == ConsoleKey.D)
                     {
-                        playerPos.x += 2;
+
+                        playerVecBe.x = playerVec.x;
+                        playerVecBe.y = playerVec.y;
+                        playerVec.x += 2;
 
                     }
-                    else if (temp.Key == ConsoleKey.A)
+                    else if (inputKey.Key == ConsoleKey.A)
                     {
-                        if (playerPos.x > 0)
+                        playerVecBe.x = playerVec.x;
+                        playerVecBe.y = playerVec.y;
+                        if (playerVec.x > 2)
                         {
-                            playerPos.x -= 2;
+
+                            playerVec.x -= 2;
                         }
                         else
                         {
-                            playerPos.x = 0;
+                            playerVec.x = 0;
                         }
                     }
-                    else if (temp.Key == ConsoleKey.W)
+                    else if (inputKey.Key == ConsoleKey.W)
                     {
-                        if (playerPos.y > 0)
+                        if (playerVec.y > 0)
                         {
-                            playerPos.y -= 1;
+                            playerVecBe.x = playerVec.x;
+                            playerVecBe.y = playerVec.y;
+                            playerVec.y -= 1;
                         }
                         else
                         {
-                            playerPos.y = 0;
+                            playerVec.y = 0;
                         }
                     }
-                    else if (temp.Key == ConsoleKey.S)
+                    else if (inputKey.Key == ConsoleKey.S)
                     {
-                        playerPos.y += 1;
+                        playerVecBe.x = playerVec.x;
+                        playerVecBe.y = playerVec.y;
+                        playerVec.y += 1;
 
                     }
                 }
@@ -119,8 +142,10 @@ namespace opoopopoop
                     }
                 }
 
-                Console.SetCursorPosition(playerPos.x, playerPos.y);
+                Console.SetCursorPosition(playerVec.x, playerVec.y);
                 Console.WriteLine("◎");
+                Console.SetCursorPosition(playerVecBe.x, playerVecBe.y);
+                Console.WriteLine("ㅁ");
 
                 foreach (Bullet a in bullet)
                 {
