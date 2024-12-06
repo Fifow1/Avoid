@@ -59,6 +59,8 @@ namespace opoopopoop
             {
                 if (Console.KeyAvailable)
                 {
+                    playerVecBe.x = playerVec.x;
+                    playerVecBe.y = playerVec.y;
                     inputKey = Console.ReadKey(true);
                     if (inputKey.Key == ConsoleKey.Enter)
                     {
@@ -80,15 +82,11 @@ namespace opoopopoop
                     else if (inputKey.Key == ConsoleKey.D)
                     {
 
-                        playerVecBe.x = playerVec.x;
-                        playerVecBe.y = playerVec.y;
                         playerVec.x += 2;
 
                     }
                     else if (inputKey.Key == ConsoleKey.A)
                     {
-                        playerVecBe.x = playerVec.x;
-                        playerVecBe.y = playerVec.y;
                         if (playerVec.x > 2)
                         {
 
@@ -103,8 +101,6 @@ namespace opoopopoop
                     {
                         if (playerVec.y > 0)
                         {
-                            playerVecBe.x = playerVec.x;
-                            playerVecBe.y = playerVec.y;
                             playerVec.y -= 1;
                         }
                         else
@@ -114,8 +110,6 @@ namespace opoopopoop
                     }
                     else if (inputKey.Key == ConsoleKey.S)
                     {
-                        playerVecBe.x = playerVec.x;
-                        playerVecBe.y = playerVec.y;
                         playerVec.y += 1;
 
                     }
