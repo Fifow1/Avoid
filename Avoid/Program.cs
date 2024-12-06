@@ -38,7 +38,7 @@ namespace Day11
             bool isFired = false;
             int posX = 0;
             int posY = 0;
-
+            // Bullet[] bullets = new Bullet[20];
 
 
             while (true)
@@ -89,6 +89,7 @@ namespace Day11
                 //===========================================로직 처리
                 if (watch.ElapsedMilliseconds >= 2000)
                 {
+                    watch.Restart();
 
                     if (isFired == true)
                     {
@@ -102,7 +103,6 @@ namespace Day11
                     {
                         continue;
                     }
-                    watch.Restart();
                 }
                 //==============================================그리는 부분==================
 
