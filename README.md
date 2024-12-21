@@ -1,6 +1,12 @@
 # 365 Minutes
  피하기 게임
  2024/12/23 ~ 2024/12/27 (총 5일)
+
+
+## 클래스 다이어 그램
+<img width="631" alt="image" src="https://github.com/user-attachments/assets/16cc59d8-6779-4919-8993-a307cb17f270" />
+
+ 
 ## 기능
  1. 게임 시작 종료
  2. 사용자 입력 처리 - W , A , S , D 로 캐릭터 움직임 처리
