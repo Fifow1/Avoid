@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 namespace Avoid
 {
-    internal class Player
-    {
         struct PlayerBefore
         {
             public int _x;
@@ -136,4 +134,3 @@ namespace Avoid
         }
 
     }
-}
