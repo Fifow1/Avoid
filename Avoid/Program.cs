@@ -31,6 +31,9 @@ namespace opoopopoop
 
         PlayerBefore playerBefore;
 
+
+        public int PlayerX { get { return _x; } set { _x = value; } }
+        public int PlayerY { get { return _y; } set { _y = value; } }
         public int PlayerHp { get { return _heart; } set { _heart = value; } }
 
         public Player()
@@ -38,7 +41,6 @@ namespace opoopopoop
             _x = 26;
             _y = 16;
             _heart = 3;
-            // 초기값 안넣으면 0,0 에 빈공간 출력되서 넣음
             playerBefore._x = _x;
             playerBefore._y = _y;
             Console.SetCursorPosition(_x, _y);
@@ -55,8 +57,8 @@ namespace opoopopoop
         {
             for (int i = 1; i < bullets.Length; i++)
             {
-                if (_x == bullets[i].BulletX && _y == bullets[i].BulletY)
-                {
+                if (_x == bullets[i].BulletX && _y == bullets[i].BulletY) 
+                { 
                     _heart -= 1;
                 }
 
@@ -139,21 +141,14 @@ namespace opoopopoop
                     _y = 29;
                 }
             }
-
-
-
         }
-
-
     }
 
-    // ----------- 내부에 구성에 많은 내용이 들어있지 않은데 구조체로 바꿀지
     class Bullet
     {
         int _x;
         int _y;
         bool _isFired;
-
 
         // BulletManager에서 사용됨
         // 건드려도 되는지 안되는지
@@ -174,24 +169,22 @@ namespace opoopopoop
     }
 
 
+    
     class BulletManager
     {
-        // ------------
         public Bullet[] bullets;
-        BulletBefore[] bulletBefore;
+        BulletBefore[] bulletBefore = new BulletBefore[30];
 
-
-        bool bulletMaxRange;
 
 
         public BulletManager()
         {
-            bulletBefore = new BulletBefore[30];
             // 0 ~ 29 = 30개
             bullets = new Bullet[30];
             for (int i = 0; i < bullets.Length; i++)
             {
                 bullets[i] = new Bullet();
+                bullets[i].IsFired = false;
             }
 
         }
@@ -248,11 +241,24 @@ namespace opoopopoop
 
                     }
                 }
+            }
+        }
+                
+
+        // 랜덤 값을 받아서 그 값과 일치하는 총알 배열 true
+        public void BulletRandomXY()
+        {
+            // 1 ~ 29
+            int rndBulletX = new Random().Next(1,30);
+            for (int i = 1; i < bullets.Length; i++)
+            {
+                if (rndBulletX == i)
+                {
+                    bullets[i].IsFired = true;
+                }
 
             }
         }
-
-
         public void BulletXY()
         {
             for (int i = 1; i < bullets.Length; i++)
@@ -321,6 +327,11 @@ namespace opoopopoop
 
                     }
                 }
+                else if (bullets[i].IsFired == false)
+                {
+                    continue;
+                }
+
             }
         }
 
@@ -457,6 +468,11 @@ namespace opoopopoop
             BulletManager bulletManager = new BulletManager();
             Random rand = new Random();
 
+
+
+
+
+            int count = 0;
 
             watch.Start();
             while (true)

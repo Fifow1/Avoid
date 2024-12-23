@@ -1,187 +1,256 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//using System.Diagnostics;
+//using System;
+//using System.Data.SqlTypes;
 
-namespace ldjlajljasldjflskfjwon
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■□□□□□□□□□□□□□□□□□□□□□□□□□□□□■");
-            Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
+//namespace opoopopoop
+//{
+//    struct PlayerBefore
+//    {
+//        public int _x;
+//        public int _y;
+//    }
+//    class Player
+//    {
+//        int _hp;
+//        int _x;
+//        int _y;
+//        public PlayerBefore playerBefore;
 
-            ConsoleKeyInfo inputKey;
+//        public int PlayerX { get { return _x; } set { _x = value; } }
+//        public int PlayerY { get { return _y; } set { _y = value; } }
+//        public int PlayerHp { get { return _hp; } set { _hp = value; } }
+
+//        public Player()
+//        {
+//            playerBefore._x = 1;
+//            playerBefore._y = 1;
+//            _x = 26;
+//            _y = 16;
+//            _hp = 3;
+//            Console.SetCursorPosition(_x, _y);
+//            Console.WriteLine("●");
+//        }
 
 
-            // 30
-            int consoleX = 1;
+//        public void MovePlayer()
+//        {
+//            ConsoleKeyInfo keyInput = Console.ReadKey(true);
+//            playerBefore._x = _x;
+//            playerBefore._y = _y;
 
-            // 30
-            int consoleY = 1;
+//            //  -- ▶
+//            if (keyInput.Key == ConsoleKey.D)
+//            {
+//                _x += 2;
+//            }
 
-            int hurt = 4;
+//            //  ◀--
+//            else if (keyInput.Key == ConsoleKey.A)
+//            {
+//                if (_x > 2)
+//                {
+//                    _x -= 2;
+//                }
+//                else
+//                {
+//                    _x = 2;
+//                }
 
-            Random random = new Random();
-            Stopwatch watch = new Stopwatch();
-            watch.Start();
+//            }
 
-            long endScore = 100000000000000000;
-            long playerScore = 0;
+//            //  ▲
+//            //  ㅣ
 
+//            else if (keyInput.Key == ConsoleKey.W)
+//            {
+//                if (_y > 1)
+//                {
+//                    _y--;
+//                }
+//                else
+//                {
+//                    _y = 1;
+//                }
+//            }
 
-
-
-
-            watch.Start();
-            int aaX = 2;
-            int aaY = 1;
-            string gunChar = "▶";
-            bool isFired = false;
-
-
-            while (playerScore < endScore)
-            {
-                //  playerScore = (long)watch.ElapsedMilliseconds;
-                // Console.WriteLine(playerScore);
-                Console.SetCursorPosition(consoleX * 2, consoleY);
-                Console.Write("●");
-
-                if (watch.ElapsedMilliseconds >= 160)
-                {
-                    watch.Restart();
-                    if (Console.KeyAvailable) //키가 눌렸을때만 참
-                    {
-                        inputKey = Console.ReadKey(true);
-
-
-                        switch (inputKey.Key)
-                        {
-
-                            //  -▶
-                            case ConsoleKey.RightArrow:
-                                isFired = true;
-                                consoleX++;
-                                Console.SetCursorPosition((consoleX - 1) * 2, consoleY);
-                                Console.Write("□");
-                                break;
+//            //  ㅣ
+//            //  ▼
+//            else if (keyInput.Key == ConsoleKey.S)
+//            {
+//                _y++;
+//            }
 
 
 
-                            // ◀-
-                            case ConsoleKey.LeftArrow:
-                                isFired = true;
-                                consoleX--;
-                                Console.SetCursorPosition((consoleX + 1) * 2, consoleY);
-                                Console.Write("□");
-                                break;
+//        }
+
+
+//    }
+
+//    class Bullet
+//    {
+//        int _x;
+//        int _y;
+//        bool _isFired;
 
 
 
+//        public Bullet()
+//        {
+//            _x = 6;
+//            _y = 6;
+//            _isFired = false;
+//        }
+//        public int BulletX { get { return _x; } set { _x = value; } }
+//        public int BulletY { get { return _y; } set { _y = value; } }
+//        public bool IsFired { get { return _isFired; } set { _isFired = value; } }
 
-                            // ▲
-                            // ㅣ
-                            case ConsoleKey.UpArrow:
-                                isFired = true;
-                                consoleY--;
-                                Console.SetCursorPosition(consoleX * 2, consoleY + 1);
-                                Console.Write("□");
-                                break;
+//    }
 
-
-
-                            // ㅣ
-                            // ▼
-                            case ConsoleKey.DownArrow:
-                                isFired = true;
-                                consoleY++;
-                                Console.SetCursorPosition(consoleX * 2, consoleY - 1);
-                                Console.Write("□");
-                                break;
+//    class BulletManager
+//    {
+//        Bullet[] bullets;
+//        Random rnd;
 
 
-                        }
-                        // 왼쪽 밖으로 못나가게
-                        if (consoleX < 1)
-                        {
-                            consoleX = 1;
-                        }
+//        public BulletManager()
+//        {
+//            bullets = new Bullet[10];
+//            for (int i = 0; i < bullets.Length; i++)
+//            {
+//                bullets[i] = new Bullet();
+//                bullets[i].BulletX = i * 2;
+//                bullets[i].BulletY = 1;
+//                bullets[i].IsFired = false;
+//            }
 
-                        // 위쪽 밖으로 못나가게
-                        else if (consoleY < 1)
-                        {
+//        }
 
-                            consoleY = 1;
-                        }
+//        // 랜덤 값을 받아서 그 값과 일치하는 총알 배열 true
+//        public void BulletRandom()
+//        {
+//            int a = new Random().Next(1, bullets.Length);
+//            for (int i = 0; i < bullets.Length; i++)
+//            {
+//                if (1 == i)
+//                {
+//                    bullets[i].IsFired = true;
+//                }
 
-                        // 오른쪽 밖으로 못나가게
-                        else if (consoleX > 28)
-                        {
-                            consoleX = 28;
-                        }
+//            }
+//        }
+//        public void BulletRandomXY()
+//        {
+//            int a = new Random().Next(1, bullets.Length);
+//            for (int i = 0; i < bullets.Length; i++)
+//            {
+//                if (bullets[i].IsFired == true)
+//                {
+//                    bullets[i].BulletY += 1;
+//                    if (bullets[i].BulletY > 20)
+//                    {
+//                        bullets[i].IsFired = false;
+//                    }
+//                }
+//                else if (bullets[i].IsFired == false)
+//                {
+//                    continue;
+//                }
 
-                        // 아래쪽 밖으로 못나가게
-                        else if (consoleY > 28)
-                        {
-                            consoleY = 28;
-                        }
-                    }
+//            }
+//        }
 
-                    if (isFired == true)
-                    {
-                        Console.SetCursorPosition(aaX, aaY);
-                        Console.WriteLine("　");
-                        aaX += 2;
-                        Console.SetCursorPosition(aaX, aaY);
-                        Console.Write(gunChar);
-                        if (aaX > 54)
-                        {
-                            Console.SetCursorPosition(aaX, aaY);
-                            Console.Write("  ");
-                            break;
-                        }
+//        public void BulletPrint()
+//        {
+//            for (int i = 0; i < bullets.Length; i++)
+//            {
+//                if (bullets[i].IsFired == true)
+//                {
+//                    Console.SetCursorPosition(bullets[i].BulletX, bullets[i].BulletY);
+//                    Console.WriteLine("★");
+//                }
+//            }
+//        }
 
-                    }
-                }
+//    }
+
+//    internal class FileName
+//    {
+//        static void Main(string[] args)
+//        {
+//            Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
+//            Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
+
+//            // 콘솔에서 커서 안보이게
+//            Console.CursorVisible = false;
+
+//            Stopwatch watch = new Stopwatch();
+
+//            Player player = new Player();
+//            Bullet bullet = new Bullet();
+//            BulletManager bulletManager = new BulletManager();
 
 
-            }
-            while (true)
-            {
+//            int count = 0;
 
-            }
-        }
-    }
-}
+//            int a = bullet.BulletY + count;
+//            watch.Start();
+//            while (player.PlayerHp > 0)
+//            {
+//                Console.SetCursorPosition(70, 0);
+//                Console.WriteLine("플레이어 체력" + " ♥ " + player.PlayerHp);
+//                if (Console.KeyAvailable)
+//                {
+//                    player.MovePlayer();
+//                }
+//                if (watch.ElapsedMilliseconds > 300)
+//                {
+//                    // watch.Restart();
+//                    // 총알 좌표 업데이트 함수
+//                    // 안에 20초마다 방향 바꾸기
+//                    bulletManager.BulletRandom();
+//                    bulletManager.BulletRandomXY();
+//                }
+
+
+//                bulletManager.BulletPrint();
+//                Console.SetCursorPosition(player.playerBefore._x, player.playerBefore._y);
+//                Console.WriteLine("　");
+//                Console.SetCursorPosition(player.PlayerX, player.PlayerY);
+//                Console.WriteLine("●");
+//            }
+
+//        }
+
+//    }
+//}
