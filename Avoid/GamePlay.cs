@@ -13,11 +13,56 @@ namespace Avoid
             Console.WriteLine("\r\n                 ____                ___       ___               __      \r\n                /\\  _`\\             /\\_ \\     /\\_ \\             /\\ \\__   \r\n                \\ \\ \\L\\ \\   __  __  \\//\\ \\    \\//\\ \\       __   \\ \\ ,_\\  \r\n                 \\ \\  _ <' /\\ \\/\\ \\   \\ \\ \\     \\ \\ \\    /'__`\\  \\ \\ \\/  \r\n                  \\ \\ \\L\\ \\\\ \\ \\_\\ \\   \\_\\ \\_    \\_\\ \\_ /\\  __/   \\ \\ \\_ \r\n                   \\ \\____/ \\ \\____/   /\\____\\   /\\____\\\\ \\____\\   \\ \\__\\\r\n                    \\/___/   \\/___/    \\/____/   \\/____/ \\/____/    \\/__/\r");
             Console.WriteLine("\r\n            ____                                                           ___      \r\n           /\\  _`\\                               __                       /\\_ \\     \r\n           \\ \\,\\L\\_\\    __  __   _ __   __  __  /\\_\\    __  __     __     \\//\\ \\    \r\n            \\/_\\__ \\   /\\ \\/\\ \\ /\\`'__\\/\\ \\/\\ \\ \\/\\ \\  /\\ \\/\\ \\  /'__`\\     \\ \\ \\   \r\n              /\\ \\L\\ \\ \\ \\ \\_\\ \\\\ \\ \\/ \\ \\ \\_/ | \\ \\ \\ \\ \\ \\_/ |/\\ \\L\\.\\_    \\_\\ \\_ \r\n              \\ `\\____\\ \\ \\____/ \\ \\_\\  \\ \\___/   \\ \\_\\ \\ \\___/ \\ \\__/.\\_\\   /\\____\\\r\n               \\/_____/  \\/___/   \\/_/   \\/__/     \\/_/  \\/__/   \\/__/\\/_/   \\/____/\r\n                                                                                    \r\n                                                                                    \r\n");
             Console.WriteLine("\n\n\n\n");
-            Console.Write("\t\t\t [ 1 ] 게임 시작");
-            Console.Write(" \t[ 2 ] 게임 종료");
+
+
+
+            string[] arrayPaly = { "  1.게임시작", "  2,게임종료" };
+            //Console.SetCursorPosition(23, 25);
+            //Console.Write("   1 . 게임 시작  ");
+            //Console.SetCursorPosition(48, 25);
+            //Console.Write("   2 . 게임 종료  ");
+
             while (true)
             {
+                Console.SetCursorPosition(30, 20);
+                for (int i=0; i<arrayPaly.Length; i++)
+                {
+                    Console.Write(arrayPaly[i] + "　　　　　　 ");
+                }
+                ConsoleKeyInfo aa = Console.ReadKey(true);
 
+                if (aa.Key == ConsoleKey.D1)
+                {
+                    arrayPaly[0] = "[ 1.게임시작 ]";
+                }
+                else if (aa.Key == ConsoleKey.D2)
+                {
+                    arrayPaly[1] = "[ 2.게임종료 ]";
+                }
+
+                //if (Console.KeyAvailable)
+                //{
+                //    aa = Console.ReadKey(true);
+                //    if (aa.Key == ConsoleKey.D1)
+                //    {
+                //        Console.SetCursorPosition(23, 25);
+                //        Console.Write("[  1 . 게임 시작  ]");
+                //        Console.SetCursorPosition(48, 25);
+                //        Console.Write("   2 . 게임 종료   ");
+                //        if (aa.Key == ConsoleKey.Enter)
+                //        {
+                //            break;
+                //        }
+                //    }
+                //    else if (aa.Key == ConsoleKey.D2)
+                //    {
+                //        Console.SetCursorPosition(23, 25);
+                //        Console.Write("   1 . 게임 시작   ");
+                //        Console.SetCursorPosition(48, 25);
+                //        Console.Write("[  2 . 게임 종료  ]");
+                //    }
+                //}
+                
             }
 
         }
