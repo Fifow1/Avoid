@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,7 +28,6 @@ namespace Avoid
         // 건드려도 되는지 안되는지
         // -------------- public을 사용할지 프로퍼티 사용할지 (프로퍼티 사용 기준)
         public BulletDirection _direction;
-
 
         public Bullet()
         {
