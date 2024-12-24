@@ -46,16 +46,9 @@
     <Compile Include="Bullet.cs" />
     <Compile Include="BulletManager.cs" />
     <Compile Include="GamePlay.cs" />
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     <Compile Include="MainProgram.cs" />
     <Compile Include="Player.cs" />
-=======
-=======
->>>>>>> Stashed changes
-    <Compile Include="Player.cs" />
-    <Compile Include="Program.cs" />
->>>>>>> Stashed changes
+
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

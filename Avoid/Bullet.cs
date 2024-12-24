@@ -1,9 +1,4 @@
-<<<<<<< Updated upstream
-﻿
-using System;
-=======
 ﻿using System;
->>>>>>> Stashed changes
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,10 +29,6 @@ namespace Avoid
         // -------------- public을 사용할지 프로퍼티 사용할지 (프로퍼티 사용 기준)
         public BulletDirection _direction;
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         public Bullet()
         {
             _isFired = false;
