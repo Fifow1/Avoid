@@ -27,21 +27,6 @@ namespace Avoid
 
         }
 
-
-        // true, false로 총알 최대 범위 체크
-        //public bool BulletMaxRange(int bulletY)
-        //{
-        //    if (bulletY > 29)
-        //    {
-
-        //        return bulletMaxRange = true;
-        //    }
-        //    else
-        //    {
-        //        return bulletMaxRange = false;
-        //    }
-        //}
-
         // 랜덤 값을 받아서 그 값과 일치하는 총알 배열 true
         public void BulletRandomXY(Random rand)
         {
@@ -96,17 +81,19 @@ namespace Avoid
                     // x,y의 이전 좌표 저장
                     bulletBefore[i]._x = bullets[i].BulletX;
                     bulletBefore[i]._y = bullets[i].BulletY;
+
+                    // 사정거리
                     bullets[i]._count += 1;
                     if (bullets[i]._count > 30)
                     {
                         bullets[i].IsFired = false;
                         bullets[i]._count = 0;
-
                     }
+                    //
+
                     else if (bullets[i].Direction == BulletDirection.up)
                     {
                         bullets[i].BulletY += 1;
-
                     }
                     else if (bullets[i].Direction == BulletDirection.down)
                     {
@@ -119,8 +106,6 @@ namespace Avoid
                     else if (bullets[i].Direction == BulletDirection.right)
                     {
                         bullets[i].BulletX -= 2;
-
-
                     }
                 }
 
@@ -146,32 +131,22 @@ namespace Avoid
                         if (bullets[i].Direction == BulletDirection.up)
                         {
                             Console.WriteLine("▼");
-                            Console.SetCursorPosition(bulletBefore[i]._x, bulletBefore[i]._y);
-                            Console.WriteLine("　");
-
                         }
                         else if (bullets[i].Direction == BulletDirection.down)
                         {
                             Console.WriteLine("▲");
-                            Console.SetCursorPosition(bulletBefore[i]._x, bulletBefore[i]._y);
-                            Console.WriteLine("　");
                         }
                         else if (bullets[i].Direction == BulletDirection.left)
                         {
                             Console.WriteLine("▶");
-                            Console.SetCursorPosition(bulletBefore[i]._x, bulletBefore[i]._y);
-                            Console.WriteLine("　");
                         }
                         else if (bullets[i].Direction == BulletDirection.right)
                         {
                             Console.WriteLine("◀");
-                            Console.SetCursorPosition(bulletBefore[i]._x, bulletBefore[i]._y);
-                            Console.WriteLine("　");
                         }
+                        Console.SetCursorPosition(bulletBefore[i]._x, bulletBefore[i]._y);
+                        Console.WriteLine("　");
                     }
-
-
-
                 }
             }
         }
