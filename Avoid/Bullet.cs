@@ -23,6 +23,7 @@ namespace Avoid
         int _x;
         int _y;
         bool _isFired;
+        public int _count;
 
         // BulletManager에서 사용됨
         // 건드려도 되는지 안되는지
