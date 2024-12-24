@@ -1,4 +1,3 @@
-﻿
 using System;
 using System.Diagnostics;
 
@@ -25,10 +24,10 @@ namespace Avoid
             while (true)
             {
                 Console.SetCursorPosition(26, 25);
-                for (int i=0; i<arrayPaly.Length; i++)
+                for (int i = 0; i < arrayPaly.Length; i++)
                 {
-                    
-                        Console.Write(arrayPaly[i] + "　　　　　　　　");
+
+                    Console.Write(arrayPaly[i] + "　　　　　　　　");
                 }
                 ConsoleKeyInfo aa = Console.ReadKey(true);
 
@@ -54,7 +53,7 @@ namespace Avoid
                     }
                 }
 
-                
+
             }
 
         }

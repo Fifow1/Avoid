@@ -30,7 +30,6 @@ namespace Avoid
         // -------------- public을 사용할지 프로퍼티 사용할지 (프로퍼티 사용 기준)
         public BulletDirection _direction;
 
-
         public Bullet()
         {
             _isFired = false;
