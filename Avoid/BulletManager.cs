@@ -28,10 +28,11 @@ namespace Avoid
         }
 
         // 랜덤 값을 받아서 그 값과 일치하는 총알 배열 true
-        public void BulletRandomXY(Random rand)
+        public void BulletRandomXY(Random rand,int a)
         {
+            
             // 1 ~ 29
-            int rndDicection = rand.Next(0, 4);
+            int rndDicection = rand.Next(0, a);
             int rndBulletX = rand.Next(0, 30);
             for (int i = 1; i < bullets.Length; i++)
             {

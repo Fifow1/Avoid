@@ -94,15 +94,20 @@ namespace Avoid
             Stopwatch watch = new Stopwatch();
 
             // 현재 플레이 시간
-            Stopwatch watch2 = new Stopwatch();
+            Stopwatch playTime = new Stopwatch();
+
+            // 시간에 따른 총알 나오는 벽 추가
+            Stopwatch rndWall = new Stopwatch();
 
             Player player = new Player();
 
             BulletManager bulletManager = new BulletManager();
             Random rand = new Random();
 
+            int a = 1;
 
             watch.Start();
+            rndWall.Start();
             while (true)
             {
                 //if (player.GameOverCheck())
@@ -111,17 +116,17 @@ namespace Avoid
                 //    Console.ReadKey(true);
                 //    break;
                 //}
-                watch2.Start();
+                playTime.Start();
 
                 // 플레이어 체력 , 시간 출력
-                player.PlayerStatus(watch2);
+                player.PlayerStatus(playTime);
 
                 if (Console.KeyAvailable)
                 {
                     player.PlayerMove();
                 }
 
-                if (watch.ElapsedMilliseconds > 100)
+                if (watch.ElapsedMilliseconds > 90)
                 {
                     watch.Restart();
                     player.CountHeart(bulletManager.bullets);
@@ -129,12 +134,21 @@ namespace Avoid
                     // 총알과 플레이어 좌표 비교를 통해 플레이어 목숨 컨트롤
 
                     // 랜덤 값 뽑아서 총알 활성화
-                    bulletManager.BulletRandomXY(rand);
+                    bulletManager.BulletRandomXY(rand, a);
 
                     // 활성화 된 총알 좌표 증감
                     bulletManager.BulletXY();
 
 
+                }
+                if (rndWall.ElapsedMilliseconds / 1000 > 10)
+                {
+                    rndWall.Restart();
+                    a++;
+                    if (a == 5)
+                    {
+                        break;
+                    }
                 }
 
                 // 총알 출력
