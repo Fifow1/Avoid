@@ -16,7 +16,7 @@ namespace Avoid
 
 
 
-            string[] arrayPaly = { "  1.게임시작", "  2,게임종료" };
+            string[] arrayPaly = { " 1.게임시작 ", " 2,게임종료 " };
             //Console.SetCursorPosition(23, 25);
             //Console.Write("   1 . 게임 시작  ");
             //Console.SetCursorPosition(48, 25);
@@ -24,44 +24,36 @@ namespace Avoid
 
             while (true)
             {
-                Console.SetCursorPosition(30, 20);
+                Console.SetCursorPosition(26, 25);
                 for (int i=0; i<arrayPaly.Length; i++)
                 {
-                    Console.Write(arrayPaly[i] + "　　　　　　 ");
+                    
+                        Console.Write(arrayPaly[i] + "　　　　　　　　");
                 }
                 ConsoleKeyInfo aa = Console.ReadKey(true);
 
                 if (aa.Key == ConsoleKey.D1)
                 {
                     arrayPaly[0] = "[ 1.게임시작 ]";
+                    arrayPaly[1] = " 2.게임종료 ";
                 }
                 else if (aa.Key == ConsoleKey.D2)
                 {
+                    arrayPaly[0] = " 1.게임시작 ";
                     arrayPaly[1] = "[ 2.게임종료 ]";
                 }
+                else if (aa.Key == ConsoleKey.Enter)
+                {
+                    if (arrayPaly[0] == "[ 1.게임시작 ]")
+                    {
+                        gamePlay();
+                    }
+                    else if (arrayPaly[1] == "[ 2.게임종료 ]")
+                    {
+                        break;
+                    }
+                }
 
-                //if (Console.KeyAvailable)
-                //{
-                //    aa = Console.ReadKey(true);
-                //    if (aa.Key == ConsoleKey.D1)
-                //    {
-                //        Console.SetCursorPosition(23, 25);
-                //        Console.Write("[  1 . 게임 시작  ]");
-                //        Console.SetCursorPosition(48, 25);
-                //        Console.Write("   2 . 게임 종료   ");
-                //        if (aa.Key == ConsoleKey.Enter)
-                //        {
-                //            break;
-                //        }
-                //    }
-                //    else if (aa.Key == ConsoleKey.D2)
-                //    {
-                //        Console.SetCursorPosition(23, 25);
-                //        Console.Write("   1 . 게임 시작   ");
-                //        Console.SetCursorPosition(48, 25);
-                //        Console.Write("[  2 . 게임 종료  ]");
-                //    }
-                //}
                 
             }
 
@@ -105,6 +97,7 @@ namespace Avoid
 
         public void gamePlay()
         {
+            Console.Clear();
             PrintMap();
             Console.SetWindowSize(100, 40);
             // 콘솔에서 커서 안보이게
