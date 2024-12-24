@@ -52,7 +52,8 @@ namespace Avoid
                         break;
                     }
                 }
-
+            }
+        }
         public void PrintMap()
         {
             Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
