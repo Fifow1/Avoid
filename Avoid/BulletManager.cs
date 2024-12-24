@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Avoid
 {
@@ -54,25 +55,25 @@ namespace Avoid
                     bullets[i].IsFired = true;
                     if (rndDicection == 0)
                     {
-                        bullets[i]._direction = BulletDirection.up;
+                        bullets[i].Direction = BulletDirection.up;
                         bullets[i].BulletX = i * 2;
                         bullets[i].BulletY = 0;
                     }
                     else if (rndDicection == 1)
                     {
-                        bullets[i]._direction = BulletDirection.down;
+                        bullets[i].Direction = BulletDirection.down;
                         bullets[i].BulletX = i * 2;
                         bullets[i].BulletY = 30;
                     }
                     else if (rndDicection == 2)
                     {
-                        bullets[i]._direction = BulletDirection.left;
+                        bullets[i].Direction = BulletDirection.left;
                         bullets[i].BulletX = 0;
                         bullets[i].BulletY = i;
                     }
                     else if (rndDicection == 3)
                     {
-                        bullets[i]._direction = BulletDirection.right;
+                        bullets[i].Direction = BulletDirection.right;
                         bullets[i].BulletX = 60;
                         bullets[i].BulletY = i;
 
@@ -82,20 +83,6 @@ namespace Avoid
         }
 
 
-        // 랜덤 값을 받아서 그 값과 일치하는 총알 배열 true
-        public void BulletRandomXY()
-        {
-            // 1 ~ 29
-            int rndBulletX = new Random().Next(1, 30);
-            for (int i = 1; i < bullets.Length; i++)
-            {
-                if (rndBulletX == i)
-                {
-                    bullets[i].IsFired = true;
-                }
-
-            }
-        }
         public void BulletXY()
         {
             for (int i = 1; i < bullets.Length; i++)
@@ -109,7 +96,7 @@ namespace Avoid
                     // x,y의 이전 좌표 저장
                     bulletBefore[i]._x = bullets[i].BulletX;
                     bulletBefore[i]._y = bullets[i].BulletY;
-                    if (bullets[i]._direction == BulletDirection.up)
+                    if (bullets[i].Direction == BulletDirection.up)
                     {
                         bullets[i].BulletY += 1;
 
@@ -125,7 +112,7 @@ namespace Avoid
                         }
                         //
                     }
-                    else if (bullets[i]._direction == BulletDirection.down)
+                    else if (bullets[i].Direction == BulletDirection.down)
                     {
                         bullets[i].BulletY -= 1;
 
@@ -137,7 +124,7 @@ namespace Avoid
                         }
                         //
                     }
-                    else if (bullets[i]._direction == BulletDirection.left)
+                    else if (bullets[i].Direction == BulletDirection.left)
                     {
                         bullets[i].BulletX += 2;
 
@@ -150,7 +137,7 @@ namespace Avoid
                         // 
 
                     }
-                    else if (bullets[i]._direction == BulletDirection.right)
+                    else if (bullets[i].Direction == BulletDirection.right)
                     {
                         bullets[i].BulletX -= 2;
 
@@ -164,12 +151,16 @@ namespace Avoid
 
                     }
                 }
-                else if (bullets[i].IsFired == false)
-                {
-                    continue;
-                }
 
             }
+        }
+
+        public bool BulletXRange(Bullet bullet)
+        {
+            return 2< bullet.BulletX && bullet.BulletX < 58;
+        }
+        public void BulletYRange(Bullet bullet)
+        {
         }
 
         // 총알 출력
@@ -180,7 +171,7 @@ namespace Avoid
                 if (bullets[i].IsFired == true)
                 {
                     Console.SetCursorPosition(bullets[i].BulletX, bullets[i].BulletY);
-                    if (bullets[i]._direction == BulletDirection.up)
+                    if (bullets[i].Direction == BulletDirection.up)
                     {
                         if (bullets[i].BulletY > 1)
                         {
@@ -190,7 +181,7 @@ namespace Avoid
                         }
 
                     }
-                    else if (bullets[i]._direction == BulletDirection.down)
+                    else if (bullets[i].Direction == BulletDirection.down)
                     {
                         if (bullets[i].BulletY < 29)
                         {
@@ -199,7 +190,7 @@ namespace Avoid
                             Console.WriteLine("　");
                         }
                     }
-                    else if (bullets[i]._direction == BulletDirection.left)
+                    else if (bullets[i].Direction == BulletDirection.left)
                     {
                         if (bullets[i].BulletX > 2)
                         {
@@ -208,7 +199,7 @@ namespace Avoid
                             Console.WriteLine("　");
                         }
                     }
-                    else if (bullets[i]._direction == BulletDirection.right)
+                    else if (bullets[i].Direction == BulletDirection.right)
                     {
                         if (bullets[i].BulletX < 58)
                         {

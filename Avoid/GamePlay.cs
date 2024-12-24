@@ -98,7 +98,7 @@ namespace Avoid
         public void gamePlay()
         {
             Console.Clear();
-            PrintMap();
+                PrintMap();
             Console.SetWindowSize(100, 40);
             // 콘솔에서 커서 안보이게
             Console.CursorVisible = false;
