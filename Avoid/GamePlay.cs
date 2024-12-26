@@ -48,6 +48,7 @@ namespace Avoid
         }
         public void PrintMap()
         {
+            //Console.BackgroundColor = ConsoleColor.Green;
             Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
             Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
             Console.WriteLine("■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■");
@@ -104,18 +105,27 @@ namespace Avoid
             BulletManager bulletManager = new BulletManager();
             Random rand = new Random();
 
+            Monster monster = new Monster();
+            Stopwatch aa = new Stopwatch();
+
+            // Player pp = new Player();
+
+
+            int b = 0;
             int a = 1;
 
             watch.Start();
             rndWall.Start();
+            aa.Start();
             while (true)
             {
-                //if (player.GameOverCheck())
-                //{
-                //    Console.SetCursorPosition(0,20);
-                //    Console.ReadKey(true);
-                //    break;
-                //}
+                if (player.GameOverCheck())
+                {
+                    Console.SetCursorPosition(0, 20);
+                    Console.ReadKey(true);
+                    Console.Clear();
+                    break;
+                }
                 playTime.Start();
 
                 // 플레이어 체력 , 시간 출력
@@ -123,15 +133,19 @@ namespace Avoid
 
                 if (Console.KeyAvailable)
                 {
-                    player.PlayerMove();
+                    
+                    player.PlayerMove(monster);
+                    
+                    
                 }
 
-                if (watch.ElapsedMilliseconds > 90)
+                if (watch.ElapsedMilliseconds > 40)
                 {
                     watch.Restart();
-                    player.CountHeart(bulletManager.bullets);
 
                     // 총알과 플레이어 좌표 비교를 통해 플레이어 목숨 컨트롤
+                    player.CountHeart(bulletManager.bullets);
+
 
                     // 랜덤 값 뽑아서 총알 활성화
                     bulletManager.BulletRandomXY(rand, a);
@@ -141,15 +155,26 @@ namespace Avoid
 
 
                 }
+                // 10초마다 벽 추가
                 if (rndWall.ElapsedMilliseconds / 1000 > 10)
                 {
                     rndWall.Restart();
-                    a++;
-                    if (a == 5)
-                    {
-                        break;
-                    }
+                    a += 1;
+                   
                 }
+                //if (aa.ElapsedMilliseconds > 400)
+                //{
+                //    aa.Restart();
+                //    if (monster._playerVector.Count >0)
+                //    {
+                //        var ll = monster._playerVector.Dequeue();
+                //        monster._xM = ll.Item1;
+                //        monster._yM = ll.Item2;
+                //    }
+                //}
+                //Console.SetCursorPosition(monster._xM , monster._yM);
+                //Console.WriteLine("◎");
+
 
                 // 총알 출력
                 bulletManager.BulletPrint();

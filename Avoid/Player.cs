@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Avoid
@@ -17,6 +18,7 @@ namespace Avoid
         int _heart;
         int _x;
         int _y;
+
 
         PlayerBefore playerBefore;
 
@@ -69,11 +71,13 @@ namespace Avoid
             Console.WriteLine("●");
         }
 
-        public void PlayerMove()
+        public void PlayerMove(Monster monster)
         {
             ConsoleKeyInfo keyInput = Console.ReadKey(true);
             playerBefore._x = _x;
             playerBefore._y = _y;
+
+            monster._playerVector.Enqueue((_x,_y));
 
             //  -- ▶
             if (keyInput.Key == ConsoleKey.D)
@@ -108,7 +112,7 @@ namespace Avoid
             else if (keyInput.Key == ConsoleKey.W)
             {
                 if (_y > 1)
-                {
+                {   
                     _y--;
                 }
                 else
@@ -130,6 +134,8 @@ namespace Avoid
                     _y = 29;
                 }
             }
+
+            
         }
     }
 }

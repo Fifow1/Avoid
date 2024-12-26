@@ -47,6 +47,7 @@
     <Compile Include="BulletManager.cs" />
     <Compile Include="GamePlay.cs" />
     <Compile Include="MainProgram.cs" />
+    <Compile Include="Monster.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

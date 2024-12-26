@@ -32,11 +32,13 @@ namespace Avoid
         {
             
             // 1 ~ 29
-            int rndDicection = rand.Next(0, a);
+            int rndDicection = rand.Next(0, 4);
             int rndBulletX = rand.Next(0, 30);
+            int rndBulletX2 = rand.Next(0, 30);
+            int rndBulletX3 = rand.Next(0, 30);
             for (int i = 1; i < bullets.Length; i++)
             {
-                if (rndBulletX == i && bullets[i].IsFired == false)
+                if ((rndBulletX == i || rndBulletX2 == i || rndBulletX3 == i) && bullets[i].IsFired == false)
                 {
                     bullets[i].IsFired = true;
                     if (rndDicection == 0)
