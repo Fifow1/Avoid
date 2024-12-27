@@ -15,7 +15,8 @@ namespace Avoid
 
         public void ChoosePlayer()
         {
-           
+            Setting setting = new Setting();
+
             Console.SetWindowSize(95, 40);
             string[] arrayPaly = { " 1.게임시작 ", " 2.게임종료 "," 3.게임설정 " };
             while (true)
@@ -56,7 +57,8 @@ namespace Avoid
                 {
                     if (arrayPaly[0] == "[ 1.게임시작 ]")
                     {
-                        gamePlay();
+                        gamePlay(setting.Character,setting.Level);
+
                     }
                     else if (arrayPaly[1] == "[ 2.게임종료 ]")
                     {
@@ -64,7 +66,7 @@ namespace Avoid
                     }
                     else if (arrayPaly[2] == "[ 3.게임설정 ]")
                     {
-                        Setting setting = new Setting();
+                       
                         Console.Clear();
                         setting.GameSetting();
                     }
@@ -111,7 +113,7 @@ namespace Avoid
 
         
 
-        public void gamePlay()
+        public void gamePlay(string playerSkin, int BulletLevel)
         {
             Console.Clear();
             PrintMap();
@@ -128,9 +130,7 @@ namespace Avoid
             // 시간에 따른 총알 나오는 벽 추가
             Stopwatch WallAddTime = new Stopwatch();
 
-            Setting setting = new Setting();
-
-            Player player = new Player(setting.Character);
+            Player player = new Player(playerSkin);
             BulletManager bulletManager = new BulletManager();
 
             Random rand = new Random();
@@ -163,7 +163,7 @@ namespace Avoid
                 }
 
                 // 플레이어 이동 반복문과 관계없이 실행
-                if (korutin.ElapsedMilliseconds > 100)
+                if (korutin.ElapsedMilliseconds > 90 - (BulletLevel *10))
                 {
                     korutin.Restart();
 

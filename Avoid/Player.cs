@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Avoid
 {
@@ -21,13 +22,14 @@ namespace Avoid
         string _name;
         public Player(string name)
         {
+            _name = name;
             _x = 26;
             _y = 16;
             _heart = 3;
             playerBefore._x = _x;
             playerBefore._y = _y;
             Console.SetCursorPosition(_x, _y);
-            Console.WriteLine(name);
+            Console.WriteLine(_name);
         }
         //public string Name
         //{

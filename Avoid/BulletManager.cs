@@ -33,11 +33,11 @@ namespace Avoid
             
             // 1 ~ 29
             int rndDicection = rand.Next(0, wallCount);
-            int rndBulletX = rand.Next(0, 30);
+            int rndBulletX1 = rand.Next(0, 30);
             int rndBulletX2 = rand.Next(0, 30);
             for (int i = 1; i < bullets.Length; i++)
             {
-                if ((rndBulletX == i || rndBulletX2 == i) && bullets[i].IsFired == false)
+                if ((rndBulletX1 == i || rndBulletX2 == i) && bullets[i].IsFired == false)
                 {
                     bullets[i].IsFired = true;
                     if (rndDicection == 0)
@@ -127,7 +127,7 @@ namespace Avoid
                         Console.SetCursorPosition(bulletBefore[i]._x, bulletBefore[i]._y);
                         Console.WriteLine("　");
                     }
-                    else if (bullets[i]._count > 1)
+                    if (bullets[i]._count > 1 && bullets[i]._count < 30)
                     {
                         Console.SetCursorPosition(bullets[i].BulletX, bullets[i].BulletY);
                         if (bullets[i].Direction == BulletDirection.up)

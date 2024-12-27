@@ -47,7 +47,7 @@ namespace Avoid
         public Setting()
         {
             _characterArray = new string[4] { "●", "★", "■", "▲" };
-            _character = Character;
+            _character = "●";
             CharArrayIndex = 0;
             Level = 1;
             _arrow.Y= 8;
@@ -152,12 +152,6 @@ namespace Avoid
                 else if (keyInput.Key == ConsoleKey.Enter)
                 {
                     Character = _characterArray[CharArrayIndex];
-                    Console.SetCursorPosition(0,0);
-                    Console.WriteLine(Character);
-                    Console.WriteLine(_characterArray[CharArrayIndex]);
-                    Console.WriteLine(_characterArray[CharArrayIndex]);
-                    Console.WriteLine(Character);
-                    Console.ReadLine();
                     break;
                 }
 
