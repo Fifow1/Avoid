@@ -1,25 +1,36 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 
 namespace Avoid
 {
+    enum Choose
+    {
+        start,end,setting
+    }
     internal class GamePlay
     {
+        // 설정에서 캐릭터 모습을 바꿀 수 있게
+
         public void ChoosePlayer()
         {
+           
             Console.SetWindowSize(95, 40);
-            Console.SetWindowPosition(0, 0);
-            Console.WriteLine("\r\n                 ____                ___       ___               __      \r\n                /\\  _`\\             /\\_ \\     /\\_ \\             /\\ \\__   \r\n                \\ \\ \\L\\ \\   __  __  \\//\\ \\    \\//\\ \\       __   \\ \\ ,_\\  \r\n                 \\ \\  _ <' /\\ \\/\\ \\   \\ \\ \\     \\ \\ \\    /'__`\\  \\ \\ \\/  \r\n                  \\ \\ \\L\\ \\\\ \\ \\_\\ \\   \\_\\ \\_    \\_\\ \\_ /\\  __/   \\ \\ \\_ \r\n                   \\ \\____/ \\ \\____/   /\\____\\   /\\____\\\\ \\____\\   \\ \\__\\\r\n                    \\/___/   \\/___/    \\/____/   \\/____/ \\/____/    \\/__/\r");
-            Console.WriteLine("\r\n            ____                                                           ___      \r\n           /\\  _`\\                               __                       /\\_ \\     \r\n           \\ \\,\\L\\_\\    __  __   _ __   __  __  /\\_\\    __  __     __     \\//\\ \\    \r\n            \\/_\\__ \\   /\\ \\/\\ \\ /\\`'__\\/\\ \\/\\ \\ \\/\\ \\  /\\ \\/\\ \\  /'__`\\     \\ \\ \\   \r\n              /\\ \\L\\ \\ \\ \\ \\_\\ \\\\ \\ \\/ \\ \\ \\_/ | \\ \\ \\ \\ \\ \\_/ |/\\ \\L\\.\\_    \\_\\ \\_ \r\n              \\ `\\____\\ \\ \\____/ \\ \\_\\  \\ \\___/   \\ \\_\\ \\ \\___/ \\ \\__/.\\_\\   /\\____\\\r\n               \\/_____/  \\/___/   \\/_/   \\/__/     \\/_/  \\/__/   \\/__/\\/_/   \\/____/\r\n                                                                                    \r\n                                                                                    \r\n");
-            Console.WriteLine("\n\n\n\n");
-            string[] arrayPaly = { " 1.게임시작 ", " 2,게임종료 " };
+            string[] arrayPaly = { " 1.게임시작 ", " 2.게임종료 "," 3.게임설정 " };
             while (true)
             {
-                Console.SetCursorPosition(26, 25);
+                Console.ResetColor();
+                Console.Clear();
+                Console.SetWindowPosition(0, 0);
+                Console.WriteLine("\r\n                 ____                ___       ___               __      \r\n                /\\  _`\\             /\\_ \\     /\\_ \\             /\\ \\__   \r\n                \\ \\ \\L\\ \\   __  __  \\//\\ \\    \\//\\ \\       __   \\ \\ ,_\\  \r\n                 \\ \\  _ <' /\\ \\/\\ \\   \\ \\ \\     \\ \\ \\    /'__`\\  \\ \\ \\/  \r\n                  \\ \\ \\L\\ \\\\ \\ \\_\\ \\   \\_\\ \\_    \\_\\ \\_ /\\  __/   \\ \\ \\_ \r\n                   \\ \\____/ \\ \\____/   /\\____\\   /\\____\\\\ \\____\\   \\ \\__\\\r\n                    \\/___/   \\/___/    \\/____/   \\/____/ \\/____/    \\/__/\r");
+                Console.WriteLine("\r\n            ____                                                           ___      \r\n           /\\  _`\\                               __                       /\\_ \\     \r\n           \\ \\,\\L\\_\\    __  __   _ __   __  __  /\\_\\    __  __     __     \\//\\ \\    \r\n            \\/_\\__ \\   /\\ \\/\\ \\ /\\`'__\\/\\ \\/\\ \\ \\/\\ \\  /\\ \\/\\ \\  /'__`\\     \\ \\ \\   \r\n              /\\ \\L\\ \\ \\ \\ \\_\\ \\\\ \\ \\/ \\ \\ \\_/ | \\ \\ \\ \\ \\ \\_/ |/\\ \\L\\.\\_    \\_\\ \\_ \r\n              \\ `\\____\\ \\ \\____/ \\ \\_\\  \\ \\___/   \\ \\_\\ \\ \\___/ \\ \\__/.\\_\\   /\\____\\\r\n               \\/_____/  \\/___/   \\/_/   \\/__/     \\/_/  \\/__/   \\/__/\\/_/   \\/____/\r\n                                                                                    \r\n                                                                                    \r\n");
+                Console.WriteLine("\n\n\n\n");
+                Console.SetCursorPosition(18, 25);
                 for (int i = 0; i < arrayPaly.Length; i++)
                 {
 
-                    Console.Write(arrayPaly[i] + "　　　　　　　　");
+                    Console.Write(arrayPaly[i] + "　　　　　　");
                 }
                 ConsoleKeyInfo aa = Console.ReadKey(true);
 
@@ -27,11 +38,19 @@ namespace Avoid
                 {
                     arrayPaly[0] = "[ 1.게임시작 ]";
                     arrayPaly[1] = " 2.게임종료 ";
+                    arrayPaly[2] = " 3.게임설정 ";
                 }
                 else if (aa.Key == ConsoleKey.D2)
                 {
                     arrayPaly[0] = " 1.게임시작 ";
                     arrayPaly[1] = "[ 2.게임종료 ]";
+                    arrayPaly[2] = " 3.게임설정 ";
+                }
+                else if (aa.Key == ConsoleKey.D3)
+                {
+                    arrayPaly[0] = " 1.게임시작 ";
+                    arrayPaly[1] = " 2.게임종료 ";
+                    arrayPaly[2] = "[ 3.게임설정 ]";
                 }
                 else if (aa.Key == ConsoleKey.Enter)
                 {
@@ -41,7 +60,13 @@ namespace Avoid
                     }
                     else if (arrayPaly[1] == "[ 2.게임종료 ]")
                     {
-                        break;
+                        break; 
+                    }
+                    else if (arrayPaly[2] == "[ 3.게임설정 ]")
+                    {
+                        Setting setting = new Setting();
+                        Console.Clear();
+                        setting.GameSetting();
                     }
                 }
             }
@@ -83,105 +108,209 @@ namespace Avoid
 
         }
 
+
+        
+
         public void gamePlay()
         {
             Console.Clear();
-                PrintMap();
+            PrintMap();
             Console.SetWindowSize(100, 40);
             // 콘솔에서 커서 안보이게
-            Console.CursorVisible = false;
+            //Console.CursorVisible = false;
 
             // 코루틴 로직
-            Stopwatch watch = new Stopwatch();
+            Stopwatch korutin = new Stopwatch();
 
             // 현재 플레이 시간
             Stopwatch playTime = new Stopwatch();
 
             // 시간에 따른 총알 나오는 벽 추가
-            Stopwatch rndWall = new Stopwatch();
+            Stopwatch WallAddTime = new Stopwatch();
 
-            Player player = new Player();
+            Setting setting = new Setting();
 
+            Player player = new Player(setting.Character);
             BulletManager bulletManager = new BulletManager();
+
             Random rand = new Random();
 
-            Monster monster = new Monster();
-            Stopwatch aa = new Stopwatch();
 
-            // Player pp = new Player();
+            // 총알 나오는 벽의 개수
+            int wallCount = 1;
 
 
-            int b = 0;
-            int a = 1;
+            string[] enddingMessage = new string[30];
 
-            watch.Start();
-            rndWall.Start();
-            aa.Start();
+
+            korutin.Start();
+            WallAddTime.Start();
+            playTime.Start();
+
+
             while (true)
             {
                 if (player.GameOverCheck())
                 {
-                    Console.SetCursorPosition(0, 20);
-                    Console.ReadKey(true);
-                    Console.Clear();
+                    PrintGameOverEndding();
                     break;
                 }
-                playTime.Start();
-
-                // 플레이어 체력 , 시간 출력
-                player.PlayerStatus(playTime);
 
                 if (Console.KeyAvailable)
                 {
-                    
-                    player.PlayerMove(monster);
-                    
-                    
+                    // 캐릭터 움직이기
+                    player.PlayerMove();
                 }
 
-                if (watch.ElapsedMilliseconds > 40)
+                // 플레이어 이동 반복문과 관계없이 실행
+                if (korutin.ElapsedMilliseconds > 100)
                 {
-                    watch.Restart();
+                    korutin.Restart();
 
                     // 총알과 플레이어 좌표 비교를 통해 플레이어 목숨 컨트롤
                     player.CountHeart(bulletManager.bullets);
 
 
                     // 랜덤 값 뽑아서 총알 활성화
-                    bulletManager.BulletRandomXY(rand, a);
+                    bulletManager.BulletRandomXY(rand, wallCount);
 
                     // 활성화 된 총알 좌표 증감
                     bulletManager.BulletXY();
 
 
                 }
-                // 10초마다 벽 추가
-                if (rndWall.ElapsedMilliseconds / 1000 > 10)
+                // 10초마다 총알 나오는 벽 추가
+                if (WallAddTime.ElapsedMilliseconds / 1000 > 10)
                 {
-                    rndWall.Restart();
-                    a += 1;
-                   
-                }
-                //if (aa.ElapsedMilliseconds > 400)
-                //{
-                //    aa.Restart();
-                //    if (monster._playerVector.Count >0)
-                //    {
-                //        var ll = monster._playerVector.Dequeue();
-                //        monster._xM = ll.Item1;
-                //        monster._yM = ll.Item2;
-                //    }
-                //}
-                //Console.SetCursorPosition(monster._xM , monster._yM);
-                //Console.WriteLine("◎");
+                    WallAddTime.Restart();
+                    wallCount += 1;
 
+                    
+
+                }
+                // 게임 클리어 조건 - 40초 생존
+                if (playTime.ElapsedMilliseconds / 1000 >= 40)
+                {
+                    PrintGameClearEndding();
+                    break;
+                }
 
                 // 총알 출력
                 bulletManager.BulletPrint();
 
                 // 플레이어 출력
                 player.PlayerPrint();
+                // 플레이어 체력 , 시간 출력
+                player.PlayerStatus(playTime);
             }
         }
+        public void PrintGameClearEndding()
+        {
+            string[] lines = new string[]
+                {
+                        "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　■■■■　■　　　　■■■■　■■■■　■■■■　　■",
+                        "■　　　■　　　　■　　　　■　　　　■　　■　■　　■　　■",
+                        "■　　　■　　　　■　　　　■■■■　■■■■　■■■■　　■",
+                        "■　　　■　　　　■　　　　■　　　　■　　■　■　■　　　■",
+                        "■　　　■■■■　■■■■　■■■■　■　　■　■　　■　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■"
+                };
+            Console.ForegroundColor = ConsoleColor.Green;
+            for (int i = 0; i < 30; i++)
+            {
+                Thread.Sleep(50);
+                Console.SetCursorPosition(0, i);
+                Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
+            }
+            for (int i = 30; i > 0; i--)
+            {
+                Thread.Sleep(50);
+                Console.SetCursorPosition(0, i);
+                Console.WriteLine(lines[i]);
+
+            }
+        }
+        public void PrintGameOverEndding()
+        {
+            for (int i = 0; i < 31; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Thread.Sleep(50);
+                Console.SetCursorPosition(0, i);
+                Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
+            }
+
+
+            Console.SetCursorPosition(0, 0);
+            string[] lines = new string[]
+            {
+                        "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　■■■■■　　■■■■■　　■　　　■　　■■■■　　■",
+                        "■　　■　　　　　　■　　　■　　■■　■■　　■　　　　　■",
+                        "■　　■　　■■　　■■■■■　　■　■　■　　■■■■　　■",
+                        "■　　■　　　■　　■　　　■　　■　■　■　　■　　　　　■",
+                        "■　　■■■■■　　■　　　■　　■　■　■　　■■■■　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　■■■■■　　■　　　■　　■■■■■　　■■■■　　■",
+                        "■　　■　　　■　　■　　　■　　■　　　　　　■　　■　　■",
+                        "■　　■　　　■　　■　　　■　　■■■■■　　■■■■　　■",
+                        "■　　■　　　■　　　■　■　　　■　　　　　　■　■　　　■",
+                        "■　　■■■■■　　　　■　　　　■■■■■　　■　　■　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■",
+                        "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■"
+            };
+
+            for (int i = 30; i > 0; i--)
+            {
+                Thread.Sleep(50);
+                Console.SetCursorPosition(0, i);
+                Console.WriteLine(lines[i]);
+
+            }
+
+        }
+
     }
 }

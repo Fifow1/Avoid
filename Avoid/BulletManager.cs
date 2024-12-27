@@ -28,17 +28,16 @@ namespace Avoid
         }
 
         // 랜덤 값을 받아서 그 값과 일치하는 총알 배열 true
-        public void BulletRandomXY(Random rand,int a)
+        public void BulletRandomXY(Random rand,int wallCount)
         {
             
             // 1 ~ 29
-            int rndDicection = rand.Next(0, 4);
+            int rndDicection = rand.Next(0, wallCount);
             int rndBulletX = rand.Next(0, 30);
             int rndBulletX2 = rand.Next(0, 30);
-            int rndBulletX3 = rand.Next(0, 30);
             for (int i = 1; i < bullets.Length; i++)
             {
-                if ((rndBulletX == i || rndBulletX2 == i || rndBulletX3 == i) && bullets[i].IsFired == false)
+                if ((rndBulletX == i || rndBulletX2 == i) && bullets[i].IsFired == false)
                 {
                     bullets[i].IsFired = true;
                     if (rndDicection == 0)

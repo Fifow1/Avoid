@@ -18,7 +18,32 @@ namespace Avoid
         int _heart;
         int _x;
         int _y;
-
+        string _name;
+        public Player(string name)
+        {
+            _x = 26;
+            _y = 16;
+            _heart = 3;
+            playerBefore._x = _x;
+            playerBefore._y = _y;
+            Console.SetCursorPosition(_x, _y);
+            Console.WriteLine(name);
+        }
+        //public string Name
+        //{
+        //    get 
+        //    { 
+        //        return _name;
+        //    }
+        //    set 
+        //    {
+        //        if (value == null)
+        //        {
+        //            _name = "ㄴㅁㅇㅁㄴㅇ";
+        //        }
+        //        _name = value; 
+        //    }
+        //}
 
         PlayerBefore playerBefore;
 
@@ -27,16 +52,7 @@ namespace Avoid
         public int PlayerY { get { return _y; } set { _y = value; } }
         public int PlayerHp { get { return _heart; } set { _heart = value; } }
 
-        public Player()
-        {
-            _x = 26;
-            _y = 16;
-            _heart = 3;
-            playerBefore._x = _x;
-            playerBefore._y = _y;
-            Console.SetCursorPosition(_x, _y);
-            Console.WriteLine("●");
-        }
+       
 
 
         public bool GameOverCheck()
@@ -61,23 +77,21 @@ namespace Avoid
             Console.SetCursorPosition(70, 2);
             Console.WriteLine("플레이어 체력" + " ♥ " + _heart);
             Console.SetCursorPosition(70, 4);
-            Console.WriteLine("버틴 시간 :" + watch2.ElapsedMilliseconds / 1000);
+            Console.WriteLine("생존 시간 : " + watch2.ElapsedMilliseconds / 1000 + " 초");
         }
         public void PlayerPrint()
         {
             Console.SetCursorPosition(playerBefore._x, playerBefore._y);
             Console.WriteLine("　");
             Console.SetCursorPosition(_x, _y);
-            Console.WriteLine("●");
+            Console.WriteLine(_name);
         }
 
-        public void PlayerMove(Monster monster)
+        public void PlayerMove()
         {
             ConsoleKeyInfo keyInput = Console.ReadKey(true);
             playerBefore._x = _x;
             playerBefore._y = _y;
-
-            monster._playerVector.Enqueue((_x,_y));
 
             //  -- ▶
             if (keyInput.Key == ConsoleKey.D)
