@@ -42,7 +42,7 @@ namespace Avoid
         string _character;
         int _charArrayIndex;
         int _level;
-        Arrow _arrow;
+        Arrow s_arrow;
 
         public Setting()
         {
@@ -50,8 +50,8 @@ namespace Avoid
             _character = "●";
             CharArrayIndex = 0;
             Level = 1;
-            _arrow.Y= 8;
-            _arrow._yBefore = 8;
+            s_arrow.Y= 8;
+            s_arrow._yBefore = 8;
         }
 
         public string Character
@@ -106,45 +106,40 @@ namespace Avoid
 
         public void GameSetting()
         {
-            
-            Console.SetCursorPosition(15, 2);
-            Console.WriteLine("게임 세팅");
-            Console.SetCursorPosition(10, 8);
-            Console.Write("  게임 캐릭터 모습 :  " + _characterArray[_charArrayIndex]);
-            Console.SetCursorPosition(10, 10);
-            Console.Write("  총알 속도 레벨 : " + _level);
+
+            PrintSetting();
             while (true)
             {
                 ConsoleKeyInfo keyInput = Console.ReadKey(true);
 
-                _arrow._yBefore= _arrow.Y;
+                s_arrow._yBefore= s_arrow.Y;
 
                 if (keyInput.Key == ConsoleKey.W)
                 {
-                    _arrow.Y -= 2;
+                    s_arrow.Y -= 2;
                 }
                 else if (keyInput.Key == ConsoleKey.S)
                 {
-                    _arrow.Y += 2;
+                    s_arrow.Y += 2;
                 }
                 else if (keyInput.Key == ConsoleKey.D)
                 {
-                    if (_arrow.Y == 8)
+                    if (s_arrow.Y == 8)
                     {
                         CharArrayIndex++;
                     }
-                    else if (_arrow.Y == 10)
+                    else if (s_arrow.Y == 10)
                     {
                         Level++;
                     }
                 }
                 else if (keyInput.Key == ConsoleKey.A)
                 {
-                    if (_arrow.Y == 8)
+                    if (s_arrow.Y == 8)
                     {
                         CharArrayIndex--;
                     }
-                    else if (_arrow.Y == 10)
+                    else if (s_arrow.Y == 10)
                     {
                         Level--;
                     }
@@ -155,16 +150,36 @@ namespace Avoid
                     break;
                 }
 
-                Console.SetCursorPosition(8, _arrow._yBefore);
-                Console.Write("　");
-                Console.SetCursorPosition(8, _arrow.Y);
-                Console.Write("▶");
-
-                Console.SetCursorPosition(32, 8);
-                Console.WriteLine(_characterArray[CharArrayIndex]);
-                Console.SetCursorPosition(29, 10);
-                Console.WriteLine(Level);
+                // 질문 Delegate 사용 예시가 맞는지
+                PrintArrow();
+                PrintSettingChanges();
             }
+        }
+
+
+        public void PrintArrow()
+        {
+            Console.SetCursorPosition(8, s_arrow._yBefore);
+            Console.Write("　");
+            Console.SetCursorPosition(8, s_arrow.Y);
+            Console.Write("▶");
+        }
+
+        public void PrintSetting()
+        {
+            Console.SetCursorPosition(15, 2);
+            Console.WriteLine("게임 세팅");
+            Console.SetCursorPosition(10, 8);
+            Console.Write("  게임 캐릭터 모습 :  " + _characterArray[_charArrayIndex]);
+            Console.SetCursorPosition(10, 10);
+            Console.Write("  총알 속도 레벨 : " + _level);
+        }
+        public void PrintSettingChanges()
+        {
+            Console.SetCursorPosition(32, 8);
+            Console.WriteLine(_characterArray[CharArrayIndex]);
+            Console.SetCursorPosition(29, 10);
+            Console.WriteLine(Level);
         }
     }
 }

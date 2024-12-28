@@ -24,11 +24,6 @@ namespace Avoid
         int _y;
         bool _isFired;
         public int _count;
-
-        // BulletManager에서 사용됨
-        // 건드려도 되는지 안되는지
-        // -------------- public을 사용할지 프로퍼티 사용할지 (프로퍼티 사용 기준)
-
         BulletDirection _direction;
 
         public BulletDirection Direction
@@ -36,7 +31,7 @@ namespace Avoid
             get { return _direction; }
             set
             {
-                // BulletDirection 타입에 존재하는 값일 때만 값 넣을 수 있게
+                // 개발할때 BulletDirection 타입에 존재하는 값일 때만 값 넣을 수 있게
                 if (Enum.IsDefined(typeof(BulletDirection), value))
                 {
                     _direction = value;
@@ -59,6 +54,24 @@ namespace Avoid
         public int BulletX { get { return _x; } set { _x = value; } }
         public int BulletY { get { return _y; } set { _y = value; } }
         public bool IsFired { get { return _isFired; } set { _isFired = value; } }
+
+
+        public int IncreaseBulletX(int IncreaseNum)
+        {
+            return _x + IncreaseNum;
+        }
+        public int DecreaseBulletX(int IncreaseNum)
+        {
+            return _x - IncreaseNum;
+        }
+        public int IncreaseBulletY(int IncreaseNum)
+        {
+            return _y + IncreaseNum;
+        }
+        public int DecreaseBulletY(int IncreaseNum)
+        {
+            return _y - IncreaseNum;
+        }
 
     }
 }
