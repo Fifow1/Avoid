@@ -29,7 +29,6 @@ namespace Avoid
                 Console.SetCursorPosition(18, 25);
                 for (int i = 0; i < arrayPaly.Length; i++)
                 {
-
                     Console.Write(arrayPaly[i] + "　　　　　　");
                 }
                 ConsoleKeyInfo aa = Console.ReadKey(true);
@@ -184,12 +183,11 @@ namespace Avoid
                 else if (ChecSecond(playTime.ElapsedMilliseconds) >= 40)
                 {
                     gameClear = true;
-                    //PrintGameClearEndding();
                 }
+                // 게임 오버 조건 
                 else if (player.GameOverCheck())
                 {
                     gameOver = true;
-                    //PrintGameOverEndding();
                 }
 
                 // 총알 출력
