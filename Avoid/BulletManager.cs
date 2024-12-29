@@ -24,15 +24,15 @@ namespace Avoid
                 bullets[i] = new Bullet();
                 bullets[i].IsFired = false;
             }
-
         }
 
         // 랜덤 값을 받아서 그 값과 일치하는 총알 배열 true
         public void BulletRandomXY(Random rand,int wallCount)
         {
-            
-            // 1 ~ 29
+            // random 좌,우,상,하
             int rndDicection = rand.Next(0, wallCount);
+
+            // ramdom bullet x좌표
             int rndBulletX1 = rand.Next(0, 30);
             int rndBulletX2 = rand.Next(0, 30);
             for (int i = 1; i < bullets.Length; i++)
@@ -40,6 +40,7 @@ namespace Avoid
                 if ((rndBulletX1 == i || rndBulletX2 == i) && bullets[i].IsFired == false)
                 {
                     bullets[i].IsFired = true;
+                    // 발사 된 총알 방향과 방향에 따른 초기값 정해주기
                     if (rndDicection == 0)
                     {
                         bullets[i].Direction = BulletDirection.up;

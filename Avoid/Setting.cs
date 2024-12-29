@@ -40,9 +40,11 @@ namespace Avoid
     {
         string[] _characterArray;
         string _character;
-        int _charArrayIndex;
         int _level;
-        Arrow _arrow;
+
+
+        int _charArrayIndex;
+        Arrow s_arrow;
 
         public Setting()
         {
@@ -50,36 +52,36 @@ namespace Avoid
             _character = "●";
             CharArrayIndex = 0;
             Level = 1;
-            _arrow.Y= 8;
-            _arrow._yBefore = 8;
+            s_arrow.Y = 8;
+            s_arrow._yBefore = 8;
         }
 
         public string Character
         {
             get { return _character; }
-            set 
+            set
             {
                 _character = value;
             }
         }
 
-        
+
         public int CharArrayIndex
         {
             get { return _charArrayIndex; }
-            set 
+            set
             {
-                if (value<0)
+                if (value < 0)
                 {
                     value = 0;
                 }
-                else if (value >3)
+                else if (value > 3)
                 {
                     value = 3;
                 }
                 else
                 {
-                    _charArrayIndex = value; 
+                    _charArrayIndex = value;
                 }
             }
         }
@@ -87,7 +89,7 @@ namespace Avoid
         public int Level
         {
             get { return _level; }
-            set 
+            set
             {
                 if (value < 1)
                 {
@@ -106,45 +108,39 @@ namespace Avoid
 
         public void GameSetting()
         {
-            
-            Console.SetCursorPosition(15, 2);
-            Console.WriteLine("게임 세팅");
-            Console.SetCursorPosition(10, 8);
-            Console.Write("  게임 캐릭터 모습 :  " + _characterArray[_charArrayIndex]);
-            Console.SetCursorPosition(10, 10);
-            Console.Write("  총알 속도 레벨 : " + _level);
+
+            PrintSetting();
             while (true)
             {
                 ConsoleKeyInfo keyInput = Console.ReadKey(true);
-
-                _arrow._yBefore= _arrow.Y;
-
+                // 잔상 제거
+                s_arrow._yBefore = s_arrow.Y;
                 if (keyInput.Key == ConsoleKey.W)
                 {
-                    _arrow.Y -= 2;
+                    upArrow();
                 }
                 else if (keyInput.Key == ConsoleKey.S)
                 {
-                    _arrow.Y += 2;
+                    downArrow();
                 }
                 else if (keyInput.Key == ConsoleKey.D)
                 {
-                    if (_arrow.Y == 8)
+                    if (SelectArray())
                     {
                         CharArrayIndex++;
                     }
-                    else if (_arrow.Y == 10)
+                    else if (SelectLevel())
                     {
                         Level++;
                     }
                 }
                 else if (keyInput.Key == ConsoleKey.A)
                 {
-                    if (_arrow.Y == 8)
+                    if (SelectArray())
                     {
                         CharArrayIndex--;
                     }
-                    else if (_arrow.Y == 10)
+                    else if (SelectLevel())
                     {
                         Level--;
                     }
@@ -154,17 +150,52 @@ namespace Avoid
                     Character = _characterArray[CharArrayIndex];
                     break;
                 }
-
-                Console.SetCursorPosition(8, _arrow._yBefore);
-                Console.Write("　");
-                Console.SetCursorPosition(8, _arrow.Y);
-                Console.Write("▶");
-
-                Console.SetCursorPosition(32, 8);
-                Console.WriteLine(_characterArray[CharArrayIndex]);
-                Console.SetCursorPosition(29, 10);
-                Console.WriteLine(Level);
+                PrintArrow();
+                PrintSettingChanges();
             }
+        }
+
+
+        public void PrintArrow()
+        {
+            Console.SetCursorPosition(8, s_arrow._yBefore);
+            Console.Write("　");
+            Console.SetCursorPosition(8, s_arrow.Y);
+            Console.Write("▶");
+        }
+
+        public void PrintSetting()
+        {
+            Console.SetCursorPosition(15, 2);
+            Console.WriteLine("게임 세팅");
+            Console.SetCursorPosition(10, 8);
+            Console.Write("  게임 캐릭터 모습 :  " + _characterArray[_charArrayIndex]);
+            Console.SetCursorPosition(10, 10);
+            Console.Write("  총알 속도 레벨 : " + _level);
+        }
+        public void PrintSettingChanges()
+        {
+            Console.SetCursorPosition(32, 8);
+            Console.WriteLine(_characterArray[CharArrayIndex]);
+            Console.SetCursorPosition(29, 10);
+            Console.WriteLine(Level);
+        }
+
+        public void upArrow()
+        {
+            s_arrow.Y -= 2;
+        }
+        public void downArrow()
+        {
+            s_arrow.Y += 2;
+        }
+        public bool SelectArray()
+        {
+            return s_arrow.Y == 8;
+        }
+        public bool SelectLevel()
+        {
+            return s_arrow.Y == 10;
         }
     }
 }
