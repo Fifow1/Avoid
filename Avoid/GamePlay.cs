@@ -154,23 +154,16 @@ namespace Avoid
                     // 캐릭터 움직이기
                     player.PlayerMove();
                 }
-
                 // 플레이어 이동 반복문과 관계없이 실행
-                else if (korutin.ElapsedMilliseconds > 90 - (BulletLevel *10))
+                else if (korutin.ElapsedMilliseconds > 80 - (BulletLevel *10))
                 {
                     korutin.Restart();
-
                     // 총알과 플레이어 좌표 비교를 통해 플레이어 목숨 컨트롤
                     player.CountHeart(bulletManager.bullets);
-
-
                     // 랜덤 값 뽑아서 총알 활성화
                     bulletManager.BulletRandomXY(rand, wallCount);
-
                     // 활성화 된 총알 좌표 증감
                     bulletManager.BulletXY();
-
-
                 }
                 // 10초마다 총알 나오는 벽 추가
                 else if (ChecSecond(WallAddTime.ElapsedMilliseconds) > 10)
@@ -178,7 +171,6 @@ namespace Avoid
                     WallAddTime.Restart();
                     wallCount += 1;
                 }
-
                 // 게임 클리어 조건 - 40초 생존
                 else if (ChecSecond(playTime.ElapsedMilliseconds) >= 40)
                 {
@@ -189,10 +181,8 @@ namespace Avoid
                 {
                     gameOver = true;
                 }
-
                 // 총알 출력
                 bulletManager.BulletPrint();
-
                 // 플레이어 출력
                 player.PlayerPrint();
                 // 플레이어 체력 , 시간 출력

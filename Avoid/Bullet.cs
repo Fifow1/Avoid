@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Avoid
 {
-    // 총알의 방향 - bool형식 보다 enum형식이 편리 할 것 같아 사용
     enum BulletDirection
     {
         up, down, left, right

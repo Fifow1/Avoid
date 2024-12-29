@@ -40,8 +40,10 @@ namespace Avoid
     {
         string[] _characterArray;
         string _character;
-        int _charArrayIndex;
         int _level;
+
+
+        int _charArrayIndex;
         Arrow s_arrow;
 
         public Setting()
@@ -50,36 +52,36 @@ namespace Avoid
             _character = "●";
             CharArrayIndex = 0;
             Level = 1;
-            s_arrow.Y= 8;
+            s_arrow.Y = 8;
             s_arrow._yBefore = 8;
         }
 
         public string Character
         {
             get { return _character; }
-            set 
+            set
             {
                 _character = value;
             }
         }
 
-        
+
         public int CharArrayIndex
         {
             get { return _charArrayIndex; }
-            set 
+            set
             {
-                if (value<0)
+                if (value < 0)
                 {
                     value = 0;
                 }
-                else if (value >3)
+                else if (value > 3)
                 {
                     value = 3;
                 }
                 else
                 {
-                    _charArrayIndex = value; 
+                    _charArrayIndex = value;
                 }
             }
         }
@@ -87,7 +89,7 @@ namespace Avoid
         public int Level
         {
             get { return _level; }
-            set 
+            set
             {
                 if (value < 1)
                 {
@@ -111,35 +113,34 @@ namespace Avoid
             while (true)
             {
                 ConsoleKeyInfo keyInput = Console.ReadKey(true);
-
-                s_arrow._yBefore= s_arrow.Y;
-
+                // 잔상 제거
+                s_arrow._yBefore = s_arrow.Y;
                 if (keyInput.Key == ConsoleKey.W)
                 {
-                    s_arrow.Y -= 2;
+                    upArrow();
                 }
                 else if (keyInput.Key == ConsoleKey.S)
                 {
-                    s_arrow.Y += 2;
+                    downArrow();
                 }
                 else if (keyInput.Key == ConsoleKey.D)
                 {
-                    if (s_arrow.Y == 8)
+                    if (SelectArray())
                     {
                         CharArrayIndex++;
                     }
-                    else if (s_arrow.Y == 10)
+                    else if (SelectLevel())
                     {
                         Level++;
                     }
                 }
                 else if (keyInput.Key == ConsoleKey.A)
                 {
-                    if (s_arrow.Y == 8)
+                    if (SelectArray())
                     {
                         CharArrayIndex--;
                     }
-                    else if (s_arrow.Y == 10)
+                    else if (SelectLevel())
                     {
                         Level--;
                     }
@@ -149,8 +150,6 @@ namespace Avoid
                     Character = _characterArray[CharArrayIndex];
                     break;
                 }
-
-                // 질문 Delegate 사용 예시가 맞는지
                 PrintArrow();
                 PrintSettingChanges();
             }
@@ -180,6 +179,23 @@ namespace Avoid
             Console.WriteLine(_characterArray[CharArrayIndex]);
             Console.SetCursorPosition(29, 10);
             Console.WriteLine(Level);
+        }
+
+        public void upArrow()
+        {
+            s_arrow.Y -= 2;
+        }
+        public void downArrow()
+        {
+            s_arrow.Y += 2;
+        }
+        public bool SelectArray()
+        {
+            return s_arrow.Y == 8;
+        }
+        public bool SelectLevel()
+        {
+            return s_arrow.Y == 10;
         }
     }
 }
